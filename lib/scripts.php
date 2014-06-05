@@ -22,6 +22,10 @@ function roots_scripts() {
     add_filter('script_loader_src', 'roots_jquery_local_fallback', 10, 2);
   }
 
+  if( !is_admin() && current_theme_supports('font-awesome-cdn')) {
+    wp_enqueue_style('font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', array(), '4.1.0');
+  }
+
   if (is_single() && comments_open() && get_option('thread_comments')) {
     wp_enqueue_script('comment-reply');
   }
