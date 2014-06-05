@@ -10,6 +10,10 @@ Roots is a WordPress starter theme based on [HTML5 Boilerplate](http://html5boil
 * Newsletter: [Subscribe](http://roots.io/subscribe/)
 * Forum: [http://discourse.roots.io/](http://discourse.roots.io/)
 
+## Fork Changes
+
+* Added generic AJAX functions file and example javascript for quickly adding AJAX enabled elements to the site.
+
 ## Installation
 
 Clone the git repo - `git clone git://github.com/roots/roots.git` - or [download it](https://github.com/roots/roots/zipball/master) and then rename the directory to the name of your theme or website. [Install Grunt](http://gruntjs.com/getting-started), and then install the dependencies for Roots contained in `package.json` by running the following from the Roots theme directory:

@@ -6,7 +6,7 @@
  * replace the dash with an underscore when adding it to the object below.
  *
  * .noConflict()
- * The routing is enclosed within an anonymous function so that you can 
+ * The routing is enclosed within an anonymous function so that you can
  * always reference jQuery with $, even when in .noConflict() mode.
  *
  * Google CDN, Latest jQuery
@@ -16,48 +16,71 @@
 
 (function($) {
 
-// Use this variable to set up the common and page specific functions. If you 
-// rename this variable, you will also need to rename the namespace below.
-var Roots = {
-  // All pages
-  common: {
-    init: function() {
-      // JavaScript to be fired on all pages
-    }
-  },
-  // Home page
-  home: {
-    init: function() {
-      // JavaScript to be fired on the home page
-    }
-  },
-  // About us page, note the change from about-us to about_us.
-  about_us: {
-    init: function() {
-      // JavaScript to be fired on the about us page
-    }
-  }
-};
+  // Use this variable to set up the common and page specific functions. If you
+  // rename this variable, you will also need to rename the namespace below.
+  var Roots = {
+    // All pages
+    common: {
+      init: function() {
+        // JavaScript to be fired on all pages
 
-// The routing fires all common scripts, followed by the page specific scripts.
-// Add additional events for more control over timing e.g. a finalize event
-var UTIL = {
-  fire: function(func, funcname, args) {
-    var namespace = Roots;
-    funcname = (funcname === undefined) ? 'init' : funcname;
-    if (func !== '' && namespace[func] && typeof namespace[func][funcname] === 'function') {
-      namespace[func][funcname](args);
+        /*
+        // Example AJAX call leveraging lib/ajax.php functions.
+        // You could have this run on form submit, element click, etc.
+        var ajaxExample = function() {
+
+          // action: Matches add_action call in lib/ajax.php
+          // nonce:  Matches our chosen nonce setup in lib/ajax.php
+          var postVars = {
+            action: 'example_ajax',
+            nonce:  rootsAjax.exampleNonce,
+          };
+
+          // Perform our post.
+          $.post(rootsAjax.ajaxUrl, postVars)
+            .done(function(response){
+              // Log the response for testing.
+              console.log(response);
+            });
+
+        } // End ajaxExample
+        */
+
+      }
+    },
+    // Home page
+    home: {
+      init: function() {
+        // JavaScript to be fired on the home page
+      }
+    },
+    // About us page, note the change from about-us to about_us.
+    about_us: {
+      init: function() {
+        // JavaScript to be fired on the about us page
+      }
     }
-  },
-  loadEvents: function() {
-    UTIL.fire('common');
+  };
 
-    $.each(document.body.className.replace(/-/g, '_').split(/\s+/),function(i,classnm) {
-      UTIL.fire(classnm);
-    });
-  }
-};
+  // The routing fires all common scripts, followed by the page specific scripts.
+  // Add additional events for more control over timing e.g. a finalize event
+  var UTIL = {
+    fire: function(func, funcname, args) {
+      var namespace = Roots;
+      funcname = (funcname === undefined) ? 'init' : funcname;
+      if (func !== '' && namespace[func] && typeof namespace[func][funcname] === 'function') {
+        namespace[func][funcname](args);
+      }
+    },
+    loadEvents: function() {
+      UTIL.fire('common');
 
-$(document).ready(UTIL.loadEvents);
+      $.each(document.body.className.replace(/-/g, '_').split(/\s+/),function(i,classnm) {
+        UTIL.fire(classnm);
+      });
+    }
+  };
+
+  $(document).ready(UTIL.loadEvents);
 
 })(jQuery); // Fully reference jQuery after this point.
