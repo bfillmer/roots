@@ -13,6 +13,7 @@ Roots is a WordPress starter theme based on [HTML5 Boilerplate](http://html5boil
 ## Fork Changes
 
 * Added generic AJAX functions file and example javascript for quickly adding AJAX enabled elements to the site.
+* Font Awesome CDN support to easily access and use the font for a design.
 
 ## Installation
 
