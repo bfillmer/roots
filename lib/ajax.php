@@ -10,7 +10,7 @@
 
 // Attach to our standard script enqueue and create a localized script
 // containing needed url/nonce variables for AJAX processing.
-add_action('wp_enqueue_scripts', 'roots_ajax_scripts', 99);
+add_action('wp_enqueue_scripts', 'roots_ajax_scripts', 101);
 function roots_ajax_scripts() {
   // Setup a localized script with relevant url and nonce information.
   wp_localize_script( 'roots_scripts', 'rootsAjax', array(
